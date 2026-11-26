@@ -10,6 +10,12 @@ Given a starting and ending 4x4 Connect Three board and a known four-ply segment
 4. Hold train, validation and test starting boards disjoint; reject overlapping starting boards rather than splitting repeated positions by row. Use train/validation only for training. Keep the test fixed, report bad results too. This measures simulated play, not human gameplay or chess.
 5. Report cold local weight loading and probability construction separately from warm codec timing. The benchmark reuses a frozen probability table at decode for both models; it does not prove independent cross-device model reproducibility. On-device deployment and a self-contained probability sidecar are out of scope.
 
+## Release extension
+
+Keep the 128-case result as the initial test. Reuse the unchanged model and adapter on every ambiguous case in the fixed test split, with a first-order fit trained on the exact same segments used by LoRA. Since the extended set includes the initial 128, it is not an independent replication. No retraining or threshold selection is part of this extension.
+
+Ship an independent model-free archive CLI. Its stream is `RBE1`, followed by two little-endian unsigned 32-bit integers for record count and payload bit length, the snapshot pairs, the most-significant-first padded rank payload, then the SHA-256 digest of every preceding byte. Up to 2,048 four-ply records are supported per archive. The decoder verifies the digest and rejects malformed input before creating the output file. This is not an authenticated format.
+
 ## Implementation order
 
 1. Build legal play, board serialization and the exact interval coder. Round-trip every stream and test malformed padding and terminal behavior.

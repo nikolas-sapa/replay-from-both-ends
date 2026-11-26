@@ -231,17 +231,18 @@ def check_replay(rows, boards, decoded):
             raise ValueError("Incorrect replay")
 
 
-def measure(data, model, adapter):
+def measure(data, model, adapter, all_ambiguous=False):
     counts = transitions(data["train"])
     rows = data["test"]
     uniform = lambda _start, _end, paths: (1,) * len(paths)
     fitted = lambda start, _end, paths: fitted_weights(paths, start, counts)
-    comparison = [r for r in rows if len(r[3]) > 1][:128]
-    if len(comparison) != 128:
+    ambiguous = [r for r in rows if len(r[3]) > 1]
+    comparison = ambiguous if all_ambiguous else ambiguous[:128]
+    if len(comparison) < 128:
         raise ValueError("Too few ambiguous examples")
     result = {
         "split": COUNTS, "seeds": SEEDS, "length": PLY,
-        "total_ambiguous": sum(len(r[3]) > 1 for r in rows),
+        "total_ambiguous": len(ambiguous),
         "full_test": {"forward": forward_roundtrip(rows),
                       "endpoint_uniform": endpoint_roundtrip(rows, uniform),
                       "endpoint_fitted": endpoint_roundtrip(rows, fitted)},
@@ -250,6 +251,14 @@ def measure(data, model, adapter):
             "endpoint_fitted": endpoint_roundtrip(comparison, fitted),
         },
     }
+    if all_ambiguous:
+        training = [r for r in data["train"] if len(r[3]) > 1]
+        matched_counts = transitions(training)
+        result["matched_training_segments"] = len(training)
+        result["ambiguous_comparison"]["endpoint_fitted_matched"] = endpoint_roundtrip(
+            comparison,
+            lambda start, _end, paths: fitted_weights(paths, start, matched_counts),
+        )
     if model:
         if not adapter:
             raise ValueError("Supply both model and adapter for matched comparison")
@@ -270,12 +279,14 @@ if __name__ == "__main__":
     parser.add_argument("--model", type=Path)
     parser.add_argument("--adapter", type=Path)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--all-ambiguous", action="store_true")
     args = parser.parse_args()
     data = samples()
     if args.prepare:
         prepare(data, args.prepare)
     else:
-        report = json.dumps(measure(data, args.model, args.adapter), indent=2) + "\n"
+        report = json.dumps(measure(data, args.model, args.adapter, args.all_ambiguous),
+                            indent=2) + "\n"
         if args.output:
             with args.output.open("x") as file:
                 file.write(report)

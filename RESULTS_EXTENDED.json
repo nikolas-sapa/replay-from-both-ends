@@ -1,0 +1,81 @@
+{
+  "split": {
+    "train": 640,
+    "valid": 128,
+    "test": 1000
+  },
+  "seeds": {
+    "train": 78131,
+    "valid": 25817,
+    "test": 49537
+  },
+  "length": 4,
+  "total_ambiguous": 720,
+  "full_test": {
+    "forward": {
+      "segments": 1000,
+      "stream_bytes": 8853,
+      "payload_bits": 6758,
+      "encode_seconds": 0.3517445829929784,
+      "decode_seconds": 0.3711359159788117
+    },
+    "endpoint_uniform": {
+      "segments": 1000,
+      "stream_bytes": 8140,
+      "payload_bits": 1055,
+      "encode_seconds": 0.010425375076010823,
+      "decode_seconds": 0.7304705419810489
+    },
+    "endpoint_fitted": {
+      "segments": 1000,
+      "stream_bytes": 8060,
+      "payload_bits": 411,
+      "encode_seconds": 0.42700991593301296,
+      "decode_seconds": 1.2291968750068918
+    }
+  },
+  "ambiguous_comparison": {
+    "endpoint_uniform": {
+      "segments": 720,
+      "stream_bytes": 5900,
+      "payload_bits": 1055,
+      "encode_seconds": 0.01253675005864352,
+      "decode_seconds": 0.6772366660879925
+    },
+    "endpoint_fitted": {
+      "segments": 720,
+      "stream_bytes": 5820,
+      "payload_bits": 411,
+      "encode_seconds": 0.3725833750795573,
+      "decode_seconds": 0.9112361669540405
+    },
+    "endpoint_fitted_matched": {
+      "segments": 720,
+      "stream_bytes": 5820,
+      "payload_bits": 413,
+      "encode_seconds": 0.3746475410880521,
+      "decode_seconds": 0.8979391669854522
+    },
+    "gemma_frozen": {
+      "segments": 720,
+      "stream_bytes": 5941,
+      "payload_bits": 1384,
+      "encode_seconds": 0.05714216595515609,
+      "decode_seconds": 0.6301245420472696,
+      "load_seconds": 1.6818944580154493,
+      "probability_seconds": 21.517223458038643
+    },
+    "gemma_lora": {
+      "segments": 720,
+      "stream_bytes": 5903,
+      "payload_bits": 1078,
+      "encode_seconds": 0.05872524995356798,
+      "decode_seconds": 0.7233409999171272,
+      "load_seconds": 1.7061887080781162,
+      "probability_seconds": 22.248353833099827
+    }
+  },
+  "matched_training_segments": 484,
+  "adapter_bytes": 1693431,
+  "base_weight_bytes": 871767174
+}
