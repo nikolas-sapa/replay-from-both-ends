@@ -1,0 +1,73 @@
+{
+  "split": {
+    "train": 640,
+    "valid": 128,
+    "test": 1000
+  },
+  "seeds": {
+    "train": 78131,
+    "valid": 25817,
+    "test": 49537
+  },
+  "length": 4,
+  "total_ambiguous": 720,
+  "full_test": {
+    "forward": {
+      "segments": 1000,
+      "stream_bytes": 8853,
+      "payload_bits": 6758,
+      "encode_seconds": 0.3081774159800261,
+      "decode_seconds": 0.36701554199680686
+    },
+    "endpoint_uniform": {
+      "segments": 1000,
+      "stream_bytes": 8140,
+      "payload_bits": 1055,
+      "encode_seconds": 0.010455042007379234,
+      "decode_seconds": 0.7039507090812549
+    },
+    "endpoint_fitted": {
+      "segments": 1000,
+      "stream_bytes": 8060,
+      "payload_bits": 411,
+      "encode_seconds": 0.5154373339610174,
+      "decode_seconds": 1.086942291003652
+    }
+  },
+  "ambiguous_comparison": {
+    "endpoint_uniform": {
+      "segments": 128,
+      "stream_bytes": 1056,
+      "payload_bits": 191,
+      "encode_seconds": 0.001143624889664352,
+      "decode_seconds": 0.10299812501762062
+    },
+    "endpoint_fitted": {
+      "segments": 128,
+      "stream_bytes": 1043,
+      "payload_bits": 84,
+      "encode_seconds": 0.056485499953851104,
+      "decode_seconds": 0.1585611660266295
+    },
+    "gemma_frozen": {
+      "segments": 128,
+      "stream_bytes": 1065,
+      "payload_bits": 257,
+      "encode_seconds": 0.0034730000188574195,
+      "decode_seconds": 0.10585066699422896,
+      "load_seconds": 1.4877871250500903,
+      "probability_seconds": 4.138431541039608
+    },
+    "gemma_lora": {
+      "segments": 128,
+      "stream_bytes": 1057,
+      "payload_bits": 198,
+      "encode_seconds": 0.003417417057789862,
+      "decode_seconds": 0.1048137079924345,
+      "load_seconds": 1.2549701670650393,
+      "probability_seconds": 4.168347125058062
+    }
+  },
+  "adapter_bytes": 1693431,
+  "base_weight_bytes": 871767174
+}

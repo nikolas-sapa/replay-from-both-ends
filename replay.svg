@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="542" viewBox="0 0 760 542" role="img" aria-labelledby="title description" xml:lang="en">
+  <title id="title">Replay from both ends</title>
+  <desc id="description">In this four-move segment of gravity Connect Three, X moves first and turns alternate. The known start is empty; the known end has X, O, X, O across the bottom in columns zero through three. Exactly four legal histories connect them. In illustrative model order, they are 0 1 2 3 with probability one half, 2 3 0 1 with probability one quarter, and 0 3 2 1 and 2 1 0 3 each with probability one eighth. Coding ranks with this distribution can give likely ranks shorter codes than a flat two-bit rank. The decoder uses the encoded rank, not the top guess. Both sides must use the same distribution and rank order.</desc>
+  <defs>
+    <style>
+      .text { font-family: "Geist Sans", Geist, system-ui, sans-serif; fill: #171717; }
+      .muted { fill: #4d4d4d; }
+      .label { font-size: 15px; font-weight: 650; letter-spacing: 1px; }
+      .small { font-size: 15px; }
+      .body { font-size: 17px; }
+      .mono { font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 19px; }
+      .num { font-variant-numeric: tabular-nums; }
+      .grid { fill: none; stroke: #a8a8a8; }
+    </style>
+    <g id="board">
+      <rect width="120" height="90" rx="8" fill="#fafafa" stroke="#a8a8a8"/>
+      <path class="grid" d="M30 0v90M60 0v90M90 0v90M0 22.5h120M0 45h120M0 67.5h120"/>
+    </g>
+  </defs>
+
+  <rect x=".5" y=".5" width="759" height="541" rx="16" fill="#fff" stroke="#e6e6e6"/>
+  <g class="text" aria-hidden="true">
+    <path d="M32 30h28" stroke="#006bff" stroke-width="3" stroke-linecap="round"/>
+    <text x="32" y="55" class="label muted">GRAVITY CONNECT THREE</text>
+    <text x="32" y="96" font-size="36" font-weight="650" letter-spacing="-1">Replay from both ends</text>
+    <text x="32" y="126" class="body muted">Four alternating drops. X moves first. Both boards are known.</text>
+    <path d="M32 148h696" stroke="#e6e6e6"/>
+
+    <text x="92" y="180" class="label" text-anchor="middle">KNOWN START</text>
+    <text x="668" y="180" class="label" text-anchor="middle">KNOWN END</text>
+    <text x="380" y="180" class="label" text-anchor="middle">FOUR LEGAL HISTORIES</text>
+    <use href="#board" x="32" y="222"/>
+    <use href="#board" x="608" y="222"/>
+    <g class="num muted small" text-anchor="middle">
+      <text x="47" y="214">0</text><text x="77" y="214">1</text><text x="107" y="214">2</text><text x="137" y="214">3</text>
+      <text x="623" y="214">0</text><text x="653" y="214">1</text><text x="683" y="214">2</text><text x="713" y="214">3</text>
+    </g>
+    <g class="mono" text-anchor="middle" font-weight="650">
+      <text x="623" y="304" fill="#006bff">X</text><text x="653" y="304">O</text>
+      <text x="683" y="304" fill="#006bff">X</text><text x="713" y="304">O</text>
+    </g>
+    <text x="92" y="342" class="small muted" text-anchor="middle">Empty board</text>
+    <text x="668" y="342" class="small muted" text-anchor="middle">Same endpoint</text>
+    <path d="M159 267h21m-6-6 6 6-6 6m406-6h21m-6-6 6 6-6 6" fill="none" stroke="#006bff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="193" y="221" width="374" height="133" rx="8" fill="#fafafa" stroke="#e6e6e6"/>
+    <path d="M193 254h374m-374 33h374m-374 33h374" stroke="#e6e6e6"/>
+    <g class="small muted" font-weight="600">
+      <text x="208" y="212">Rank</text>
+      <text x="322" y="212">Column drops</text>
+      <text x="551" y="212" text-anchor="end">Model chance*</text>
+    </g>
+    <g class="body num">
+      <text x="208" y="244">1 of 4</text>
+      <text x="208" y="277">2 of 4</text>
+      <text x="208" y="310">3 of 4</text>
+      <text x="208" y="343">4 of 4</text>
+      <g text-anchor="end">
+        <text x="551" y="244">½</text>
+        <text x="551" y="277">¼</text>
+        <text x="551" y="310">⅛</text>
+        <text x="551" y="343">⅛</text>
+      </g>
+    </g>
+    <g class="mono" xml:space="preserve">
+      <text x="322" y="244">0 1 2 3</text>
+      <text x="322" y="277">2 3 0 1</text>
+      <text x="322" y="310">0 3 2 1</text>
+      <text x="322" y="343">2 1 0 3</text>
+    </g>
+    <text x="380" y="379" class="small muted" text-anchor="middle">* Illustrative probabilities</text>
+
+    <rect x="32" y="402" width="696" height="112" rx="12" fill="#fafafa" stroke="#e6e6e6"/>
+    <path d="M368 418v80" stroke="#e6e6e6"/>
+    <text x="48" y="432" class="label">SHORTER CODES FOR LIKELY RANKS</text>
+    <text x="48" y="459" class="body">Use model probabilities to code the rank.</text>
+    <text x="48" y="483" class="body">Likely ranks can beat a flat 2-bit code.</text>
+
+    <text x="388" y="432" class="label">DECODE THE RANK, NOT THE GUESS</text>
+    <text x="388" y="459" class="body">If rank 2 was sent, recover rank 2.</text>
+    <text x="388" y="483" class="body">Share the distribution and rank order.</text>
+  </g>
+</svg>
