@@ -57,6 +57,8 @@ python experiment.py --all-ambiguous --model "$MODEL_DIR" --adapter run/adapter
 
 ## Scope
 
+For the separate Halo/Gemma 4 port, see the [SFT smoke-test recipe](HALO.md). The results above use MLX and Gemma 3.
+
 - All streams include the same start and end snapshots. This measures compression **with snapshots**, not against plain game logs that never store them.
 - Simulated play has an explicit transition bias. A first-order model fitted on training moves is therefore a serious baseline; Gemma is not assumed to beat it.
 - Both model encoders and decoders must agree on the exact quantized probabilities and canonical path order. The benchmark caches those probabilities, does not include their delivery cost in stream bytes, and reports checkpoint sizes separately.
